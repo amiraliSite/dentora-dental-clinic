@@ -101,15 +101,15 @@ Open [http://localhost:3000](http://localhost:3000) — the site boots in **Pers
 
 ## 🌐 Live on GitHub Pages
 
-The site is deployed automatically to **GitHub Pages** on every push to `main` via GitHub Actions:
+The site is deployed to **GitHub Pages** and rebuilt from the `gh-pages` branch on every update:
 
-> **https://amiralisite.github.io/dentora-dental-clinic/**
+> **[https://amiralisite.github.io/dentora-dental-clinic/](https://amiralisite.github.io/dentora-dental-clinic/)**
 
 How it works:
 
-- `.github/workflows/deploy.yml` builds a **static export** (`output: "export"`) of the site with `NEXT_PUBLIC_STATIC=1`
-- In static mode the API routes are removed and the **booking form falls back to client-side storage** (localStorage) — every feature, section, animation and all three languages work exactly the same
-- The artifact is uploaded with the official `actions/upload-pages-artifact` + `actions/deploy-pages` pipeline (no Jekyll, `.nojekyll` included)
+- `npm run build:static` produces a **static export** (`output: "export"`) configured with the correct `basePath` (`/dentora-dental-clinic`)
+- In static mode the API routes are excluded and the **booking form falls back to client-side storage** (localStorage) — every section, animation and all three languages work exactly the same
+- The build output is published to the **`gh-pages` branch**, which GitHub Pages serves (`.nojekyll` included, so `_next/` assets load correctly)
 - The full-stack version (Prisma + SQLite + live API) remains the default for local dev and self-hosting — see [Getting Started](#-getting-started)
 
 ---
