@@ -32,6 +32,42 @@ interface BookingFormValues {
   message?: string;
 }
 
+/**
+ * Static builds (GitHub Pages) have no backend — appointments are stored
+ * client-side in localStorage instead of the API.
+ */
+const IS_STATIC = process.env.NEXT_PUBLIC_STATIC === "1";
+const LOCAL_BOOKINGS_KEY = "dentora-local-bookings";
+
+function readLocalBookings(): Record<string, unknown>[] {
+  if (typeof window === "undefined") return [];
+  try {
+    const raw = window.localStorage.getItem(LOCAL_BOOKINGS_KEY);
+    const parsed = raw ? JSON.parse(raw) : [];
+    return Array.isArray(parsed) ? parsed : [];
+  } catch {
+    return [];
+  }
+}
+
+function saveLocalBooking(values: Record<string, unknown>) {
+  const list = readLocalBookings();
+  list.push({ ...values, createdAt: new Date().toISOString() });
+  try {
+    window.localStorage.setItem(LOCAL_BOOKINGS_KEY, JSON.stringify(list));
+  } catch {
+    /* storage full — ignore */
+  }
+}
+
+function sameMonthCount(list: Record<string, unknown>[]): number {
+  const now = new Date();
+  return list.filter((item) => {
+    const created = typeof item.createdAt === "string" ? new Date(item.createdAt) : null;
+    return !!created && created.getMonth() === now.getMonth() && created.getFullYear() === now.getFullYear();
+  }).length;
+}
+
 export function Booking() {
   const { t, locale } = useLanguage();
   const { toast } = useToast();
@@ -39,6 +75,10 @@ export function Booking() {
   const [monthCount, setMonthCount] = useState<number | null>(null);
 
   useEffect(() => {
+    if (IS_STATIC) {
+      setMonthCount(sameMonthCount(readLocalBookings()));
+      return;
+    }
     fetch("/api/appointments")
       .then((r) => (r.ok ? r.json() : null))
       .then((d) => {
@@ -78,14 +118,19 @@ export function Booking() {
   const onSubmit = async (values: BookingFormValues) => {
     setSubmitting(true);
     try {
-      const res = await fetch("/api/appointments", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...values, lang: locale }),
-      });
-      if (!res.ok) throw new Error("request failed");
-      const data = await res.json();
-      if (typeof data.count === "number") setMonthCount(data.count);
+      if (IS_STATIC) {
+        saveLocalBooking({ ...values, lang: locale });
+        setMonthCount(sameMonthCount(readLocalBookings()));
+      } else {
+        const res = await fetch("/api/appointments", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ ...values, lang: locale }),
+        });
+        if (!res.ok) throw new Error("request failed");
+        const data = await res.json();
+        if (typeof data.count === "number") setMonthCount(data.count);
+      }
       toast({
         title: t.booking.successTitle,
         description: t.booking.successDesc,

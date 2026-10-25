@@ -4,6 +4,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { CheckCircle2, Globe, Microscope, ShieldCheck, Waves } from "lucide-react";
 import { Reveal, SectionHeading } from "./shared";
+import { asset } from "@/lib/utils";
 import { useLanguage } from "./LanguageProvider";
 
 const featureIcons = [Microscope, Globe, Waves, ShieldCheck];
@@ -24,7 +25,7 @@ export function About() {
             <Reveal>
               <div className="relative aspect-[4/3] overflow-hidden rounded-[2rem] border-4 border-white shadow-soft-lg dark:border-white/10">
                 <Image
-                  src="/images/clinic-1.png"
+                  src={asset("/images/clinic-1.png")}
                   alt="Dentora clinic reception"
                   fill
                   className="object-cover"
@@ -41,7 +42,7 @@ export function About() {
             >
               <div className="relative aspect-square">
                 <Image
-                  src="/images/clinic-2.png"
+                  src={asset("/images/clinic-2.png")}
                   alt="Dentora treatment room"
                   fill
                   className="object-cover"

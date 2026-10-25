@@ -4,11 +4,17 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { GraduationCap, Star } from "lucide-react";
 import { Reveal, SectionHeading } from "./shared";
+import { asset } from "@/lib/utils";
 import { useLanguage } from "./LanguageProvider";
 
 export function Doctors() {
   const { t } = useLanguage();
-  const images = ["/images/doctor-1.png", "/images/doctor-2.png", "/images/doctor-3.png", "/images/doctor-4.png"];
+  const images = [
+    asset("/images/doctor-1.png"),
+    asset("/images/doctor-2.png"),
+    asset("/images/doctor-3.png"),
+    asset("/images/doctor-4.png"),
+  ];
 
   return (
     <section id="doctors" className="py-20 lg:py-28">

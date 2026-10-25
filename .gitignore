@@ -75,3 +75,6 @@ server.log
 
 # keep the example env
 !.env.example
+# static export build dir
+/.next-static/
+/.github/

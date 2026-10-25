@@ -5,13 +5,13 @@ import { motion } from "framer-motion";
 import { Camera } from "lucide-react";
 import { SectionHeading } from "./shared";
 import { useLanguage } from "./LanguageProvider";
-import { cn } from "@/lib/utils";
+import { cn, asset } from "@/lib/utils";
 
 const images = [
-  { src: "/images/clinic-1.png", span: "sm:col-span-2 sm:row-span-2" },
-  { src: "/images/smile-1.png", span: "" },
-  { src: "/images/clinic-2.png", span: "" },
-  { src: "/images/clinic-3.png", span: "sm:col-span-2" },
+  { src: asset("/images/clinic-1.png"), span: "sm:col-span-2 sm:row-span-2" },
+  { src: asset("/images/smile-1.png"), span: "" },
+  { src: asset("/images/clinic-2.png"), span: "" },
+  { src: asset("/images/clinic-3.png"), span: "sm:col-span-2" },
 ];
 
 export function Gallery() {

@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
+import { asset } from "@/lib/utils";
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -22,7 +23,7 @@ export const metadata: Metadata = {
     "Dentora",
   ],
   authors: [{ name: "amiraliSite" }],
-  icons: { icon: "/logo.svg" },
+  icons: { icon: asset("/logo.svg") },
   openGraph: {
     title: "Dentora Dental Clinic | کلینیک دندان‌پزشکی دنتورا",
     description: "لبخندی درخشان با تیمی متخصص به سه زبان فارسی، ترکی و عربی در استانبول",

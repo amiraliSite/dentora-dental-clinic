@@ -4,6 +4,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { CalendarCheck, Phone, Sparkles, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { asset } from "@/lib/utils";
 import { useLanguage } from "./LanguageProvider";
 import { Counter } from "./Counter";
 
@@ -124,7 +125,7 @@ export function Hero() {
         >
           <div className="relative aspect-[5/4] overflow-hidden rounded-[2.5rem] border-4 border-white/70 shadow-soft-lg dark:border-white/10">
             <Image
-              src="/images/hero.png"
+              src={asset("/images/hero.png")}
               alt="Dentora modern dental clinic"
               fill
               priority

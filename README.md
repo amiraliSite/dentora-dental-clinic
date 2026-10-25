@@ -11,6 +11,8 @@
 [![Framer Motion](https://img.shields.io/badge/Framer_Motion-Animations-black?logo=framer&logoColor=white)](https://www.framer.com/motion/)
 [![React 19](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white)](https://react.dev)
 
+[![Live on GitHub Pages](https://img.shields.io/badge/%F0%9F%9A%80_LIVE-Dentora_on_GitHub_Pages-10b981?style=for-the-badge)](https://amiralisite.github.io/dentora-dental-clinic/)
+
 **فارسی (RTL)** · **Türkçe (LTR)** · **العربية (RTL)**
 
 A production-ready, fully responsive dental clinic website with instant language switching, real RTL/LTR support, dark mode, buttery-smooth animations, and a full-stack appointment booking system (Next.js API Routes + Prisma + SQLite).
@@ -94,6 +96,21 @@ npm run dev        # or: bun run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) — the site boots in **Persian**; switch to Türkçe or العربية from the navbar globe menu. 🌐
+
+---
+
+## 🌐 Live on GitHub Pages
+
+The site is deployed automatically to **GitHub Pages** on every push to `main` via GitHub Actions:
+
+> **https://amiralisite.github.io/dentora-dental-clinic/**
+
+How it works:
+
+- `.github/workflows/deploy.yml` builds a **static export** (`output: "export"`) of the site with `NEXT_PUBLIC_STATIC=1`
+- In static mode the API routes are removed and the **booking form falls back to client-side storage** (localStorage) — every feature, section, animation and all three languages work exactly the same
+- The artifact is uploaded with the official `actions/upload-pages-artifact` + `actions/deploy-pages` pipeline (no Jekyll, `.nojekyll` included)
+- The full-stack version (Prisma + SQLite + live API) remains the default for local dev and self-hosting — see [Getting Started](#-getting-started)
 
 ---
 
