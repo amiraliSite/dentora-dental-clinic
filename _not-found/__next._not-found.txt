@@ -1,0 +1,4 @@
+1:"$Sreact.fragment"
+2:I[39756,["/dentora-dental-clinic/_next/static/chunks/67628cd3f32678b6.js","/dentora-dental-clinic/_next/static/chunks/7b55991ae4828060.js","/dentora-dental-clinic/_next/static/chunks/d2be314c3ece3fbe.js"],"default"]
+3:I[37457,["/dentora-dental-clinic/_next/static/chunks/67628cd3f32678b6.js","/dentora-dental-clinic/_next/static/chunks/7b55991ae4828060.js","/dentora-dental-clinic/_next/static/chunks/d2be314c3ece3fbe.js"],"default"]
+0:{"buildId":"VW9zWZfGWFxos-ZeVLtiC","rsc":["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","template":["$","$L3",null,{}]}]]}],"loading":null,"isPartial":false}
